@@ -10,7 +10,7 @@ USER root
 # Install deps + add Chrome Stable + purge all the things
 RUN rm -rf /var/lib/apt/lists/* && \
   apt-get update && \
-  apt-get remove gnupg -y && apt-get install --reinstall gnupg2 dirmngr --allow-unauthenticated -y && \
+  apt-get remove gnupg -y && apt-get install --reinstall wget gnupg2 dirmngr --allow-unauthenticated -y && \
   apt-get autoclean && apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg --no-install-recommends && \
   curl -sSL https://deb.nodesource.com/setup_14.x | bash - && \
   apt-get install -y nodejs --no-install-recommends && \
@@ -26,7 +26,6 @@ VOLUME /home/chrome/reports
 WORKDIR /home/chrome/reports
 
 COPY entrypoint.sh /usr/bin/entrypoint
-COPY urls /home/chrome/urls
 
 # Run Chrome non-privileged
 USER chrome
