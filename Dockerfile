@@ -26,6 +26,7 @@ VOLUME /home/chrome/reports
 WORKDIR /home/chrome/reports
 
 COPY entrypoint.sh /usr/bin/entrypoint
+COPY urls /home/chrome/urls
 
 # Run Chrome non-privileged
 USER chrome

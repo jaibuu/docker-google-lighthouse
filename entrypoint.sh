@@ -1,11 +1,8 @@
 #!/bin/sh
-set -e
 
 CHROME_FLAGS=${CHROME_FLAGS:-"--headless --disable-gpu --no-sandbox"}
 
-# first arg is `-f` or `--some-option`
-if [ "${1#http}" != "$1" ]; then
-    set -- lighthouse --enable-error-reporting --chrome-flags="${CHROME_FLAGS}" "$@"
-fi
+while IFS= read -r line || [ -n "$line" ]; do
+  lighthouse --enable-error-reporting --chrome-flags="${CHROME_FLAGS}" "$line" --output json --output html
+done </home/chrome/urls
 
-exec "$@"
