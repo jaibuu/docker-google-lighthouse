@@ -51,3 +51,17 @@ syscall: 'open',
 path: '/home/chrome/reports/myawesome_site_admin_heavypage.report.json' }
 ```
 Make sure your folder has the write right for others (chmod o+w)
+
+
+CHEATSHEET
+---
+- Now it supports taking a link to a list as an argument instead of a local file path
+- It also exports JSON in addition to HTML
+Commands helpful for the customizied version.
+
+
+```
+docker build . -t lighthouse:0.1;
+
+docker run --rm --name lighthouse -it -v $PWD/output:/home/chrome/reports lighthouse:0.1 'https://drive.google.com/uc?id=1UIkD8mVbtvU2vNuILtjaJt-fteKFSlMh'
+```
